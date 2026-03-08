@@ -72,7 +72,7 @@
         /* Анимация движения линий вправо-вниз */
         @keyframes move-stripes {
             0% { background-position: 0 0; }
-            100% { background-position: 40px 0; }
+            100% { background-position: -40px 0; }
         }
 
         .donate-info {
@@ -440,7 +440,7 @@
         // --- SCROLL NAV ---
         window.onscroll = function() {
             const nav = document.getElementById('smart-nav');
-            if (window.pageYOffset > 120) nav.classList.add('scrolled');
+            if (window.pageYOffset > 180) nav.classList.add('scrolled');
             else nav.classList.remove('scrolled');
         };
 
