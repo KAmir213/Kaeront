@@ -39,20 +39,97 @@
             min-height: 100vh;
         }
 
-        /* --- DONATION BANNER --- */
+        /* --- DONATION BANNER WITH ANIMATION ---*/
         .donate-banner {
-            background: rgba(255, 170, 0, 0.1);
-            border: 1px solid rgba(255, 170, 0, 0.3);
+            /* Темно-оранжевые линии */
+            background: linear-gradient(
+                45deg, 
+                rgba(255, 170, 0, 0.1) 25%, 
+                transparent 25%, 
+                transparent 50%, 
+                rgba(255, 170, 0, 0.1) 50%, 
+                rgba(255, 170, 0, 0.1) 75%, 
+                transparent 75%, 
+                transparent
+            );
+            background-size: 40px 40px; /* Размер шага линий */
+            animation: move-stripes 2s linear infinite; /* Движение */
+            
+            border: 1px solid rgba(255, 170, 0, 0.4);
             margin: calc(var(--nav-height) + 20px) auto 0;
             max-width: 1160px;
             width: 90%;
-            padding: 15px 25px;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
             backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Анимация движения линий вправо-вниз */
+        @keyframes move-stripes {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 0; }
+        }
+
+        .donate-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 2; /* Чтобы текст был поверх линий */
+        }
+
+        .donate-title {
+            font-family: 'MinecraftCustom', sans-serif;
+            font-size: 1rem;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .donate-goal {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            max-width: 750px;
+            line-height: 1.5;
+        }
+
+        .donate-goal b {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .donate-btn-small {
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            font-family: 'MinecraftCustom', sans-serif;
+            font-size: 0.9rem;
+            padding: 12px 25px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .donate-btn-small:hover {
+            background: #ffffff;
+            box-shadow: 0 0 20px var(--accent);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 850px) {
+            .donate-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding: 25px;
+            }
+        }
+
 
         .donate-info {
             display: flex;
@@ -213,9 +290,11 @@
     <div class="donate-banner">
         <div class="donate-info">
             <div class="donate-title">Сбор на мощное железо</div>
-            <div class="donate-goal">Для стабильной работы всех серверов 24/7 и переезда на выделенный сервер нам необходимо собрать <span>30 000 ₽</span>. Твоя поддержка поможет Kaeront стать быстрее, надёжнее и доступнее для всех.</div>
+            <div class="donate-goal">
+                Для стабильной работы всех наших серверов 24/7 и переезда на выделенный сервер нам необходимо собрать <b>30 000 ₽</b>. Даже ваша малая поддержка поможет Kaeront стать быстрее, надёжнее и доступнее для всех.
+            </div>
         </div>
-        <a href="https://pay.cloudtips.ru/p/db4c09dc" target="_blank" class="donate-btn-small">ПОДДЕРЖАТЬ ПРОЕКТ</a>
+        <a href="https://pay.cloudtips.ru/p/db4c09dc" target="_blank" class="donate-btn-small">ПОДДЕРЖАТЬ</a>
     </div>
 
 
