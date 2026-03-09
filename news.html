@@ -70,12 +70,12 @@
         }
 
         /* Цветовые схемы в стиле Minecraft */
-        .tag-misc     { background: #FA0; color: #000; } /* Прочее (Желтый) */
-        .tag-server  { background: #55F; color: #fff; } /* Сервер (Синий) */
-        .tag-site    { background: #00A; color: #fff; } /* Сайт (Темно-синий) */
-        .tag-event   { background: #F5F; color: #000; } /* Событие (Пурпурный) */
-        .tag-major     { background: #F55; color: #fff; } /* Важное (Красный) */
-        .tag-fix     { background: #A00; color: #fff; } /* Исправление (Темно-красный) */
+        .tag-gold  { background: #FA0; color: #000; }
+        .tag-blue  { background: #55F; color: #fff; }
+        .tag-dark-blue  { background: #00A; color: #fff; }
+        .tag-light-purple  { background: #F5F; color: #000; }
+        .tag-red  { background: #F55; color: #fff; }
+        .tag-dark-red  { background: #A00; color: #fff; }
 
         
         /* Скрываем архивные новости */
@@ -124,12 +124,22 @@
 
         <div class="news-list" id="newsContainer">
             
-            <div class="news-card" id="08-03-2026">
+            <div class="news-card" id="09-03-2026">
+                <span class="news-meta">9 марта, 2026 года</span>
+                <h2>Открытие официального сайта</h2>
+                <div class="news-tags">
+        <span class="tag tag-red">Важное</span>
+        <span class="tag tag-dark-blue">Сайт</span>
+                </div>
+                <p>Добро пожаловать в наш новый цифровой дом! Теперь следить за прогрессом разработки, подавать заявки на Survival и поддерживать проект можно в одном месте. Сайт будет дополняться новыми функциями по мере развития Хаба.</p>
+            </div>
+
+            <div class="news-card hidden" id="08-03-2026">
                 <span class="news-meta">8 марта, 2026 года</span>
                 <h2>Открытие официального сайта</h2>
                 <div class="news-tags">
-        <span class="tag tag-major">Важное</span>
-        <span class="tag tag-site">Сайт</span>
+        <span class="tag tag-red">Важное</span>
+        <span class="tag tag-dark-blue">Сайт</span>
                 </div>
                 <p>Добро пожаловать в наш новый цифровой дом! Теперь следить за прогрессом разработки, подавать заявки на Survival и поддерживать проект можно в одном месте. Сайт будет дополняться новыми функциями по мере развития Хаба.</p>
             </div>
@@ -138,7 +148,7 @@
                 <span class="news-meta">4 марта, 2026 года</span>
                 <h2>Мы переименовались в Kaeront</h2>
                 <div class="news-tags">
-        <span class="tag tag-major">Важное</span>
+        <span class="tag tag-red">Важное</span>
                 </div>
                 <p>Мы официально меняем название на <b>Kaeront</b>. Это решение связано с расширением нашей инфраструктуры и подготовкой к запуску глобальной сети серверов.</p>
             </div>
@@ -147,7 +157,7 @@
                 <span class="news-meta">23 февраля, 2026 года</span>
                 <h2>Чувствуете запах выпечки?</h2>
                 <div class="news-tags">
-        <span class="tag tag-server">AlsasnikS</span>
+        <span class="tag tag-blue">AlsasnikS</span>
                 </div>
                 <p>Мы делаем классный датапак/ресурспак <b>"Cuisine"</b>, который добавит нам новые предметы, связанные с кулинарией! Инструменты, материалы, продукты и блюда подходят на AlsasnikS!</p>
             </div>
@@ -156,7 +166,7 @@
                 <span class="news-meta">22 февраля, 2026 года</span>
                 <h2>Ачивочное выживание</h2>
                <div class="news-tags">
-        <span class="tag tag-server">AlsasnikS</span>
+        <span class="tag tag-blue">AlsasnikS</span>
                 </div>
                 <p>Скоро на AlsasnikS появятся новые ачивки и квесты! У нас, пока, готово 30 ачивок (много!). Помимо простых ачивок мы добавили испытания, с которыми вы с ума сойдёте...</p>
             </div>
