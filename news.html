@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Новости проекта «Kaeront»</title>
+    <title>Kaeront | Новости</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -54,6 +54,33 @@
             background: var(--card-bg); border: 1px solid #1a1a1a; padding: 30px;
             position: relative; transition: 0.3s; scroll-margin-top: 100px;
         }
+
+        /* --- NEWS TAGS --- */
+        .news-tags {
+            display: flex;
+            flex-wrap: wrap; /* Чтобы метки переносились на новую строку на мобилках */
+            gap: 8px;
+            margin-bottom: 15px;
+            margin-top: -5px; /* Подтягиваем ближе к заголовку */
+        }
+
+        .tag {
+            background: var(--accent);
+            color: #000;
+            padding: 3px 10px;
+            font-family: 'Minecraft', sans-serif;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            border-radius: 2px;
+            font-weight: 600;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+
+        /* Дополнительные цвета для разных типов новостей (по желанию) */
+        .tag.blue { background: #00AAFF; color: #fff; }
+        .tag.red { background: #FF5555; color: #fff; }
+        .tag.green { background: #55FF55; color: #000; }
         
         /* Скрываем архивные новости */
         .news-card.hidden { display: none; }
@@ -104,12 +131,19 @@
             <div class="news-card" id="08-03-2026">
                 <span class="news-meta">8 марта, 2026 года</span>
                 <h2>Официальный запуск сайта</h2>
+            <div class="news-tags">
+                <span class="tag">Kaeront</span>
+                <span class="tag.blue">Сайт</span>
+            </div>
                 <p>Добро пожаловать в наш новый цифровой дом! Теперь следить за прогрессом разработки, подавать заявки на Survival и поддерживать проект можно в одном месте.</p>
             </div>
 
             <div class="news-card hidden" id="04-03-2026">
                 <span class="news-meta">4 марта, 2026 года</span>
                 <h2>Мы переименовались в Kaeront</h2>
+            <div class="news-tags">
+                <span class="tag.red">Важное</span>
+            </div>
                 <p>Проект KAmir Group официально меняет название на <b>Kaeront</b>. Это решение связано с расширением нашей инфраструктуры и подготовкой к запуску глобальной сети серверов.</p>
             </div>
 
