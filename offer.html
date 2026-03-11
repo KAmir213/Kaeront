@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Публичная оферта проекта «Kaeront»</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --accent: #d633ff; /* Сменил на аметистовый для Crystal Clash стиля, или оставь #FFAA00 */
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --line-color: rgba(40, 40, 40, 0.4);
+            --nav-height: 70px;
+        }
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('minecraft.ttf') format('truetype');
+            font-weight: 200;
+            font-style: normal;
+            font-display: swap;
+        }
+        body {
+            background-color: var(--bg);
+            background-image: linear-gradient(135deg, var(--line-color) 25%, transparent 50%, transparent 50%, var(--line-color) 50%, var(--line-color) 75%, transparent 75%, transparent);
+            background-size: 12px 12px;
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height);
+            background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(10px);
+            border-bottom: 1.5px solid #1a1a1a; display: flex; justify-content: space-between;
+            align-items: center; padding: 0 5%; box-sizing: border-box; z-index: 2000;
+        }
+        .nav-logo { font-family: 'Minecraft'; font-size: 0.8rem; color: var(--accent); text-decoration: none; }
+        .nav-links { display: flex; gap: 10px; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.65rem; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- LEGAL CONTENT --- */
+        .legal-wrapper {
+            padding-top: calc(var(--nav-height) + 40px);
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        .legal-card {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid #1a1a1a;
+            border-top: 4px solid var(--accent);
+            padding: 50px 40px;
+            margin: 20px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-family: 'Minecraft';
+            font-size: 0.7rem;
+            transition: 0.3s;
+        }
+        .btn-back:hover { color: var(--accent); }
+
+        h1 { font-family: 'Minecraft'; font-size: 1.1rem; color: var(--accent); line-height: 1.2; margin-bottom: 10px; }
+        .date-label { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 40px; display: block; }
+
+        h3 { font-family: 'Minecraft'; font-size: 0.8rem; color: #fff; margin-top: 40px; border-left: 3px solid var(--accent); padding-left: 15px; }
+        p, li { color: var(--text-dim); font-size: 0.95rem; line-height: 1.3; margin-bottom: 15px; }
+        ul { padding-left: 20px; margin-bottom: 20px; }
+        strong { color: #fff; }
+
+        footer { padding: 60px 20px; background: #050505; border-top: 1px solid #111; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-section h4 { font-family: 'Minecraft'; font-size: 0.7rem; color: var(--accent); margin-bottom: 20px; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent); }
+        .copyright-bar { border-top: 1px solid #111; padding-top: 30px; margin-top: 40px; text-align: center; font-size: 0.65rem; color: #333; font-family: 'Minecraft'; }
+
+        @media (max-width: 600px) {
+            .legal-card { padding: 30px 20px; }
+            h1 { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="./" class="nav-logo">KAERONT</a>
+        <div class="nav-links">
+            <a href="./#servers">Сервера</a>
+            <a href="news">Новости</a>
+            <a href="https://t.me/KaerontMC" target="_blank">Поддержка</a>
+            <a href="https://pay.cloudtips.ru/p/db4c09dc" target="_blank" style="color: var(--accent);">Пожертвовать</a>
+        </div>
+    </nav>
+
+    <div class="legal-wrapper">
+        <div class="legal-card">
+            <a href="./" class="btn-back">< НА ГЛАВНУЮ</a>
+            
+            <h1>Публичная оферта о добровольном пожертвовании сети серверов «Kaeront»</h1>
+            <span class="date-label">Редакция от: 11.03.2026</span>
+
+            <h3>1. Общие положения</h3>
+            <p>1.1. Настоящий документ является публичной Офертой Администрации проекта Kaeront (далее — «Администрация») и содержит все существенные условия по осуществлению добровольных пожертвований Пользователями.</p>
+            <p>1.2. Под «Проектом Kaeront» понимается совокупность игровых серверов (Survival, Hub, Crystal Clash, Payload, Tridentball и др.) и веб-ресурсов проекта.</p>
+            <p>1.3. Совершение платежа через сервис CloudTips является полным и безоговорочным принятием (акцептом) условий настоящей Оферты.</p>
+
+            <h3>2. Предмет оферты</h3>
+            <p>2.1. Пользователь по своему усмотрению и добровольно осуществляет безвозмездный перевод денежных средств (Пожертвование) в пользу развития и поддержания работоспособности Проекта Kaeront.</p>
+            <p>2.2. Администрация в качестве благодарности может предоставлять Пользователю нематериальное поощрение на игровых серверах (виртуальные ценности: классы, префиксы, косметические эффекты).</p>
+
+            <h3>3. Порядок внесения средств</h3>
+            <p>3.1. Все пожертвования осуществляются через платежный сервис CloudTips. Администрация не собирает и не хранит данные банковских карт Пользователей.</p>
+            <p>3.2. Пожертвование считается совершенным в момент успешного подтверждения транзакции банком или платежной системой.</p>
+
+            <h3>4. Условия возврата и обязательства</h3>
+            <p>4.1. Поскольку пожертвование является безвозмездным и добровольным взносом, денежные средства возврату не подлежат.</p>
+            <p>4.2. Нематериальное поощрение не является товаром или услугой в юридическом смысле. Администрация не гарантирует сохранность поощрений в случае вайпов, технических сбоев или закрытия Проекта.</p>
+            <p>4.3. Блокировка Пользователя (бан) за нарушение Глобальных правил сети Kaeront не является основанием для возврата ранее внесенного пожертвования.</p>
+
+            <h3>5. Ответственность</h3>
+            <p>5.1. Администрация не несет ответственности за работу платежных систем или ошибки, совершенные Пользователем при заполнении реквизитов платежа.</p>
+            <p>5.2. Проект Kaeront не имеет отношения к компаниям Mojang AB или Microsoft. Все платежи идут на частную поддержку инфраструктуры серверов.</p>
+
+            <h3>6. Заключительные положения</h3>
+            <p>6.1. Администрация оставляет за собой право изменять условия Оферты в одностороннем порядке без предварительного уведомления.</p>
+            <p>6.2. По всем вопросам пожертвований Пользователь может обратиться в официальную поддержку: @KaerontMC в Telegram.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>KAERONT NETWORK</h4>
+                <p class="footer-quote">«Kaeront — это не просто сеть серверов, это мир, созданный для вашей истории».</p>
+            </div>
+            <div class="footer-section">
+                <h4>ДОКУМЕНТЫ</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy">Политика конфиденциальности и обработки персональных данных</a></li>
+                    <li><a href="offer">Публичная оферта</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>ПОДДЕРЖКА</h4>
+                <ul class="footer-links">
+                    <li><a href="https://pay.cloudtips.ru/p/db4c09dc" target="_blank">CloudTips</a></li>
+                    <li><a href="https://t.me/KaerontMC" target="_blank">Telegram Поддержка</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright-bar">Copyright © Kaeront 2026. Разработчик KAmir.</div>
+    </footer>
+</body>
+</html>
