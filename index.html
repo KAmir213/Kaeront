@@ -49,7 +49,7 @@
             min-height: 100vh;
         }
 
-        /* --- DONATION BANNER --- */
+        /* --- DONATION BANNER WITH ANIMATION ---*/
         .donate-banner {
             background: linear-gradient(135deg, rgba(255, 170, 0, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 170, 0, 0.1) 50%, rgba(255, 170, 0, 0.1) 75%, transparent 75%, transparent);
             background-size: 20px 20px; 
@@ -102,43 +102,26 @@
         h1 { font-family: 'Minecraft', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--accent); margin: 0; }
         .hero-desc { color: var(--text-main); margin-top: 20px; font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
-        /* --- WHY US (ИНТЕРАКТИВНАЯ ЛЕНТА) --- */
-        .section-title { font-family: 'Minecraft'; font-size: 1.1rem; color: var(--text-main); text-align: center; margin: 60px 0 20px; text-transform: uppercase; }
-        
-        /* Ограничитель по сетке основного контента */
-        .why-us-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            overflow: hidden;
-            position: relative;
-        }
-
+        /* --- WHY US (INFINITE VERSION) --- */
+        .section-title { font-family: 'Minecraft'; font-size: 1.1rem; color: var(--text-main); text-align: center; margin: 40px 0 20px; text-transform: uppercase; }
         .why-us-container { 
             width: 100%; 
-            overflow: hidden; 
-            padding: 20px 0;
+            overflow-x: hidden; 
+            padding: 20px 0; 
             cursor: grab;
-            user-select: none; /* Чтобы текст не выделялся при перетаскивании */
+            user-select: none;
         }
         .why-us-container:active { cursor: grabbing; }
-
         .why-us-track { 
             display: flex; 
             gap: 20px; 
+            padding: 0 5%; 
             width: max-content; 
             will-change: transform;
         }
-
-        .why-card { 
-            background: rgba(20, 20, 20, 0.5); 
-            border-left: 3px solid var(--accent); 
-            padding: 25px; 
-            width: 280px; 
-            flex-shrink: 0; 
-            transition: background 0.3s;
-        }
-        .why-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--accent); margin: 0 0 10px; }
+        .why-card { background: rgba(20, 20, 20, 0.5); border-left: 3px solid var(--accent); padding: 25px; width: 280px; flex-shrink: 0; transition: var(--transition); }
+        .why-card:hover { background: rgba(25, 25, 25, 1); box-shadow: 0 5px 15px rgba(0, 0, 0, 1); }
+        .why-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: var(--accent); margin: 0 0 10px; }
         .why-card p { color: var(--text-dim); font-size: 0.85rem; line-height: 1.5; margin: 0; }
 
         /* --- SERVER CARDS --- */
@@ -151,6 +134,11 @@
         .server-card p { color: var(--text-dim); line-height: 1.7; font-size: 0.9rem; margin: 0; }
         .badge-dev { display: inline-flex; align-items: center; gap: 10px; padding: 8px 12px; background: rgba(255, 170, 0, 0.1); border: 1px solid var(--accent); color: var(--accent); font-family: 'Minecraft'; font-size: 0.7rem; margin-top: 15px; }
         .badge-dev span { opacity: 0.8; font-size: 0.7rem; background: var(--accent); color: #000; padding: 2px 4px; }
+
+        /* --- PROGRESS --- */
+        .dev-label { font-family: 'Minecraft'; font-size: 0.8rem; color: var(--accent); margin-bottom: 10px; display: block; }
+        .progress-container { width: 100%; height: 12px; background: #1a1a1a; border: 1px solid #333; margin: 20px 0; }
+        .progress-bar { height: 100%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
         /* --- MODALS --- */
         .modal-overlay {
@@ -175,7 +163,7 @@
         .tech-box { background: #050505; padding: 20px; border: 1px solid #222; font-size: 0.9rem; line-height: 2.2; }
         .tech-box span { color: var(--accent); }
 
-        /* --- NEWS --- */
+        /* --- NEWS SECTION --- */
         .news-container { max-width: 1160px; width: 95%; margin: 20px auto 40px; display: flex; flex-direction: column; }
         .news-card { background: rgba(20, 20, 20, 1); border: 1px solid rgba(255, 255, 255, 0.2); border-bottom: none; padding: 25px; position: relative; }
         .news-badge { display: inline-block; background: var(--accent); color: #000; padding: 4px 12px; font-family: 'Minecraft', sans-serif; font-size: 0.7rem; margin-bottom: 15px; }
@@ -186,12 +174,13 @@
         .news-more-btn:hover { background: var(--accent); color: #000; }
         .news-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
         .tag { font-family: 'Minecraft', sans-serif; font-size: 0.65rem; padding: 3px 5px; }
-        .tag-red { background: #F55; color: #000; }
-        .tag-dark-red { background: #A00; color: #fff; }
-        .tag-blue { background: #55F; color: #fff; }
+        .tag-red   { background: #F55; color: #000; }
+        .tag-dark-red   { background: #A00; color: #fff; }
+        .tag-blue  { background: #55F; color: #fff; }
 
         footer { padding: 60px 20px; background: #050505; border-top: 1px solid #111; margin-top: auto; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-section h4 { font-family: 'Minecraft'; font-size: 0.7rem; color: var(--accent); margin-bottom: 20px; }
         .footer-links { list-style: none; padding: 0; margin: 0; }
         .footer-links li { margin-bottom: 10px; }
         .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; transition: 0.3s; }
@@ -216,11 +205,11 @@
     <div class="donate-banner">
         <div class="donate-info">
             <div class="donate-title">Сбор на мощное железо</div>
-            <div class="donate-goal">Для стабильной работы всех наших серверов 24/7 и переезда на выделенный сервер нам необходимо собрать <b>30 000 ₽</b>. Ваша малейшая поддержка поможет Kaeront стать быстрее и надёжнее.</div>
-        <div class="donate-progress">
-            <div class="donate-progress-bar" style="width: 7.167%;"></div>
-            <div class="donate-progress-text">2150 из 30000 собрано</div>
-        </div>
+            <div class="donate-goal">Для стабильной работы всех наших серверов 24/7 и переезда на выделенный сервер нам необходимо собрать <b>30 000 ₽</b>. Ваша малейшая поддержка поможет Kaeront стать быстрее и надежнее.</div>
+            <div class="donate-progress">
+                <div class="donate-progress-bar" style="width: 7.167%;"></div>
+                <div class="donate-progress-text">2150 из 30000 собрано</div>
+            </div>
         </div>
         <a href="donate" class="donate-btn-small">ПОДДЕРЖАТЬ</a>
     </div>
@@ -231,18 +220,16 @@
     </header>
 
     <div class="section-title">Почему мы?</div>
-    <div class="why-us-wrapper">
-        <div class="why-us-container" id="whyUsScroll">
-            <div class="why-us-track" id="whyUsTrack">
-                <div class="why-card"><h4>Комьюнити</h4><p>Адекватная, дружелюбная среда и строгий отбор игроков.</p></div>
-                <div class="why-card"><h4>Нет вайпов</h4><p>Можете строить постройки и не терять их через время.</p></div>
-                <div class="why-card"><h4>Стабильность</h4><p>Плавные сервера с минимальным количеством лагов.</p></div>
-                <div class="why-card"><h4>Нет P2W</h4><p>Никакого доната на привилегии. Все игроки равны.</p></div>
-                <div class="why-card"><h4>Доступность</h4><p>Наши сервера предоставляют бесплатную игру.</p></div>
-                <div class="why-card"><h4>Администрация</h4><p>Быстрая и вежливая Администрация проекта.</p></div>
-            </div>
+    <section class="why-us-container" id="whyUsScroll">
+        <div class="why-us-track" id="whyUsTrack">
+            <div class="why-card"><h4>Комьюнити</h4><p>Адекватная, дружелюбная среда и строгий отбор игроков.</p></div>
+            <div class="why-card"><h4>Нет вайпов</h4><p>На текущих серверах нет вайпов, так что можете строить постройки и не терять их через время.</p></div>
+            <div class="why-card"><h4>Стабильность</h4><p>Плавные сервера с минимальным количеством лагов.</p></div>
+            <div class="why-card"><h4>Нет P2W</h4><p>Никакого доната на привилегии. Все игроки равны.</p></div>
+            <div class="why-card"><h4>Доступность</h4><p>Наши сервера предоставляют бесплатную игру.</p></div>
+            <div class="why-card"><h4>Администрация</h4><p>Быстрая и вежливая Администрация проекта.</p></div>
         </div>
-    </div>
+    </section>
 
     <div class="servers-header">Наши сервера</div>
     <main class="content-grid" id="servers">
@@ -257,9 +244,19 @@
                 <p>Сердце проекта и центр навигации. Всё начинается здесь.</p>
                 <div class="badge-dev">В РАЗРАБОТКЕ <span>90%</span></div>
             </div>
+            <div class="server-card" onclick="openModal('modal-bedrock')">
+                <h3>Kaeront: Bedrock</h3>
+                <p>Выживание на Minecraft Bedrock Edition. Описание не готово.</p>
+                <div class="badge-dev">НА ЗАДНЕМ ПЛАНЕ</div>
+            </div>
         </div>
         <div>
             <div class="section-header">Игры</div>
+            <div class="server-card" onclick="openModal('modal-cc')">
+                <h3>Crystal Clash</h3>
+                <p>Защити Аметистовое Ядро! Магическая тактическая битва.</p>
+                <div class="badge-dev">ПЛАНИРУЕТСЯ</div>
+            </div>
             <div class="server-card" onclick="openModal('modal-payload')">
                 <h3>Payload: Backyard</h3>
                 <p>Командная гонка вагонеток на динамичной карте Backyard.</p>
@@ -280,39 +277,45 @@
             <p style="color: var(--text-dim); line-height: 1.6;">Исследуй бесконечные земли, объединяйся в кланы и строй монументальные базы.</p>            
             <div class="modal-grid">
                 <div class="modal-left">
-                    <div class="dropdown" id="r1"><button class="dropdown-btn" onclick="toggleDropdown('r1')">1. Общие положения <span>+</span></button><div class="dropdown-content">1.1. Сервер предоставляет возможность игры в Minecraft.</div></div>
-                    <div class="dropdown" id="r2"><button class="dropdown-btn" onclick="toggleDropdown('r2')">2. Поведение <span>+</span></button><div class="dropdown-content">2.1. Уважайте других игроков.</div></div>
+                    <div class="dropdown" id="r1"><button class="dropdown-btn" onclick="toggleDropdown('r1')">1. Общие положения <span>+</span></button><div class="dropdown-content">1.1. Сервер предоставляет возможность игры в Minecraft. Администрация оставляет за собой право изменять правила.</div></div>
+                    <div class="dropdown" id="r2"><button class="dropdown-btn" onclick="toggleDropdown('r2')">2. Поведение игроков <span>+</span></button><div class="dropdown-content">2.1. Уважайте других. Запрещены оскорбления, унижения, троллинг.</div></div>
+                    <div class="dropdown" id="r3"><button class="dropdown-btn" onclick="toggleDropdown('r3')">3. Запрещенные действия <span>+</span></button><div class="dropdown-content">3.1. Читы, гриферство, кража, использование багов и дюпов запрещены.</div></div>
+                    <div class="dropdown" id="r4"><button class="dropdown-btn" onclick="toggleDropdown('r4')">4. Чат и общение <span>+</span></button><div class="dropdown-content">4.1. Запрещен флуд, реклама и политика.</div></div>
+                    <div class="dropdown" id="r5"><button class="dropdown-btn" onclick="toggleDropdown('r5')">5. Постройки <span>+</span></button><div class="dropdown-content">5.1. Запрещены лаг-машины и постройки оскорбительного характера.</div></div>
+                    <div class="dropdown" id="r6"><button class="dropdown-btn" onclick="toggleDropdown('r6')">6. Безопасность <span>+</span></button><div class="dropdown-content">6.1. Запрещена передача аккаунта. Сообщайте о багах @KaerontMC.</div></div>
+                    <div class="dropdown" id="r7"><button class="dropdown-btn" onclick="toggleDropdown('r7')">7. Возраст <span>+</span></button><div class="dropdown-content">7.1. Игра лицам младше 14 лет только с разрешения родителей. Проверка через Discord.</div></div>
+                    <div class="dropdown" id="r8"><button class="dropdown-btn" onclick="toggleDropdown('r8')">8. Жалобы <span>+</span></button><div class="dropdown-content">8.1. Жалобы принимаются в Telegram @KaerontMC с доказательствами.</div></div>
                 </div>
                 <div class="modal-right">
-                    <div class="tech-box">Версия: <span>Java 1.21.8</span><br>Адрес: <span>Недоступен</span></div>
+                    <div class="tech-box">Версия: <span>Java 1.21.8</span><br>Адрес: <span>Временно недоступен</span></div>
                     <a href="https://forms.gle/xhKPWc1LHf23SApc8" class="btn-apply" target="_blank">ПОДАТЬ ЗАЯВКУ</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="modal-hub"><div class="modal-window"><span class="close-btn" onclick="closeModal('modal-hub')">ЗАКРЫТЬ</span><h2 style="font-family: 'Minecraft'; color: var(--accent);">Kaeront: Hub</h2><p style="color: var(--text-dim)">В разработке... Готовность 90%.</p></div></div>
-    <div class="modal-overlay" id="modal-payload"><div class="modal-window"><span class="close-btn" onclick="closeModal('modal-payload')">ЗАКРЫТЬ</span><h2 style="font-family: 'Minecraft'; color: var(--accent);">Payload: Backyard</h2><p style="color: var(--text-dim)">В разработке... Готовность 70%.</p></div></div>
-    <div class="modal-overlay" id="modal-trident"><div class="modal-window"><span class="close-btn" onclick="closeModal('modal-trident')">ЗАКРЫТЬ</span><h2 style="font-family: 'Minecraft'; color: var(--accent);">Tridentball</h2><p style="color: var(--text-dim)">В разработке... Готовность 50%.</p></div></div>
+    <div class="modal-overlay" id="modal-hub"><div class="modal-window"><span class="close-btn" onclick="closeModal('modal-hub')">ЗАКРЫТЬ</span><h2 style="font-family: 'Minecraft'; color: var(--accent);">Kaeront: Hub</h2><p style="color:var(--text-dim)">Разработка 90%. Главный центр навигации.</p></div></div>
+    <div class="modal-overlay" id="modal-bedrock"><div class="modal-window"><span class="close-btn" onclick="closeModal('modal-bedrock')">ЗАКРЫТЬ</span><h2 style="font-family: 'Minecraft'; color: var(--accent);">Kaeront: Bedrock</h2><p style="color:var(--text-dim)">Выживание для мобильных устройств. В планах.</p></div></div>
+    <div class="modal-overlay" id="modal-cc"><div class="modal-window"><span class="close-btn" onclick="closeModal('modal-cc')">ЗАКРЫТЬ</span><h2 style="font-family: 'Minecraft'; color: var(--accent);">Crystal Clash</h2><p style="color:var(--text-dim)">Тактическая битва за ядра.</p></div></div>
+    <div class="modal-overlay" id="modal-payload"><div class="modal-window"><span class="close-btn" onclick="closeModal('modal-payload')">ЗАКРЫТЬ</span><h2 style="font-family: 'Minecraft'; color: var(--accent);">Payload</h2><p style="color:var(--text-dim)">Сопровождение вагонетки. Разработка 70%.</p></div></div>
+    <div class="modal-overlay" id="modal-trident"><div class="modal-window"><span class="close-btn" onclick="closeModal('modal-trident')">ЗАКРЫТЬ</span><h2 style="font-family: 'Minecraft'; color: var(--accent);">Tridentball</h2><p style="color:var(--text-dim)">Гандбол на трезубцах. Разработка 50%.</p></div></div>
 
     <div class="news-container">
         <div class="news-card">
             <span class="news-date">09.03.2026</span>
             <div class="news-badge">ПОСЛЕДНЯЯ НОВОСТЬ</div>
             <h3>Технические работы</h3>
-            <div class="news-tags">
-                <span class="tag tag-dark-red">Отключение</span>
-                <span class="tag tag-blue">Сервера</span>
-            </div>
-            <p>Проект Kaeront временно меняет формат! Мы фокусируемся на сетевой части.</p>
+            <div class="news-tags"><span class="tag tag-dark-red">Отключение</span> <span class="tag tag-blue">Сервера</span></div>
+            <p>Проект Kaeront временно меняет формат! Мы фокусируемся на сетевой части и стабильности доступа.</p>
         </div>
         <a href="news" class="news-more-btn">ЧИТАТЬ ЕЩЁ</a>
     </div>
 
     <footer>
         <div class="footer-grid">
-            <div class="footer-section"><h4>KAERONT</h4><p style="color: var(--text-dim); font-size: 0.8rem;">«Minecraft как искусство»</p></div>
-            <div class="footer-section"><h4>КОНТАКТЫ</h4><ul class="footer-links"><li><a href="mailto:admin@kaeront.ru">admin@kaeront.ru</a></li></ul></div>
+            <div class="footer-section"><h4>KAERONT</h4><p style="color: #888; font-size: 0.8rem;">Minecraft как искусство.</p></div>
+            <div class="footer-section"><h4>ДОКУМЕНТЫ</h4><ul class="footer-links"><li><a href="privacy">Политика конфиденциальности</a></li><li><a href="offer">Оферта</a></li></ul></div>
+            <div class="footer-section"><h4>КОНТАКТЫ</h4><ul class="footer-links"><li><a href="https://t.me/KaerontMC">@KaerontMC (Telegram)</a></li><li><a href="mailto:admin@kaeront.ru">admin@kaeront.ru</a></li></ul></div>
         </div>
         <div class="copyright-bar">Copyright © Kaeront 2026. All rights reserved.</div>
     </footer>
@@ -339,39 +342,37 @@
             else nav.classList.remove('scrolled');
         };
 
-        // --- БЕСКОНЕЧНАЯ ЛЕНТА (DRAG + AUTO) ---
+        // --- БЕСКОНЕЧНЫЙ СЛАЙДЕР С РУЧНЫМ СКРОЛЛОМ ---
         const container = document.getElementById('whyUsScroll');
         const track = document.getElementById('whyUsTrack');
-        const cards = Array.from(track.children);
-        
-        // Клонируем карточки для бесконечности
-        cards.forEach(card => track.appendChild(card.cloneNode(true)));
-        cards.forEach(card => track.insertBefore(card.cloneNode(true), track.firstChild));
+        const originalCards = Array.from(track.children);
+
+        // Клонируем для бесконечности
+        originalCards.forEach(c => track.appendChild(c.cloneNode(true)));
+        originalCards.forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
 
         let isDown = false;
-        let startX, scrollLeft;
+        let startX;
+        let scrollLeft;
         let isPaused = false;
-        const speed = 0.5; // Скорость автопрокрутки
+        const speed = 0.6; 
 
-        const cardWidth = cards[0].offsetWidth + 20; 
-        const totalOriginalWidth = cardWidth * cards.length;
+        const cardTotalWidth = originalCards[0].offsetWidth + 20;
+        const resetPoint = cardTotalWidth * originalCards.length;
 
-        // Начальная позиция (в центре, на оригинальных карточках)
-        container.scrollLeft = totalOriginalWidth;
+        // Стартовая позиция
+        container.scrollLeft = resetPoint;
 
         function animate() {
             if (!isPaused && !isDown) {
                 container.scrollLeft += speed;
-                
-                // Бесшовный перезапуск
-                if (container.scrollLeft >= totalOriginalWidth * 2) {
-                    container.scrollLeft = totalOriginalWidth;
-                }
+                if (container.scrollLeft >= resetPoint * 2) container.scrollLeft = resetPoint;
             }
             requestAnimationFrame(animate);
         }
+        animate();
 
-        // Хватание мышкой
+        // Мышка / Тач
         container.addEventListener('mousedown', (e) => {
             isDown = true;
             startX = e.pageX - container.offsetLeft;
@@ -388,22 +389,16 @@
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - container.offsetLeft;
-            const walk = (x - startX) * 1.5; 
+            const walk = (x - startX) * 1.5;
             container.scrollLeft = scrollLeft - walk;
 
-            // Зацикливание при ручном скролле
-            if (container.scrollLeft >= totalOriginalWidth * 2) container.scrollLeft = totalOriginalWidth;
-            if (container.scrollLeft <= 0) container.scrollLeft = totalOriginalWidth;
+            if (container.scrollLeft >= resetPoint * 2) container.scrollLeft = resetPoint;
+            if (container.scrollLeft <= 0) container.scrollLeft = resetPoint;
         });
 
-        // Пауза при наведении
         container.addEventListener('mouseenter', () => isPaused = true);
         container.addEventListener('mouseleave', () => isPaused = false);
 
-        // Старт
-        animate();
-
-        // Закрытие модалок по клику на фон
         window.onclick = function(e) { if (e.target.classList.contains('modal-overlay')) closeModal(e.target.id); }
     </script>
 </body>
