@@ -234,27 +234,36 @@
         <div class="copyright-bar">Copyright © Kaeront 2026. All rights reserved.<br>NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT<br>Проект разработчика Амира «KAmir» Кашапова.</div>
     </footer>
 
-    <script>
-        const check = document.getElementById('offer-check');
-        const btn = document.getElementById('pay-button');
-        const cloudTipsUrl = 'https://pay.cloudtips.ru/p/db4c09dc';
+<script>
+    const check = document.getElementById('offer-check');
+    const btn = document.getElementById('pay-button');
+    const cloudTipsUrl = 'https://pay.cloudtips.ru/p/db4c09dc';
 
-        check.addEventListener('change', function() {
-            if(this.checked) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
+    // Тексты для кнопки
+    const textDisabled = "Примите условия оферты";
+    const textEnabled = "Перейти к оплате";
 
-        btn.addEventListener('click', function() {
-            if(check.checked) {
-                window.open(cloudTipsUrl, '_blank');
-                setTimeout(() => {
-                    window.location.href = './';
-                }, 400);
-            }
-        });
-    </script>
+    // Устанавливаем начальное состояние при загрузке страницы
+    btn.innerText = textDisabled;
+
+    check.addEventListener('change', function() {
+        if(this.checked) {
+            btn.classList.add('active');
+            btn.innerText = textEnabled; // Меняем текст на активный
+        } else {
+            btn.classList.remove('active');
+            btn.innerText = textDisabled; // Возвращаем подсказку
+        }
+    });
+
+    btn.addEventListener('click', function() {
+        if(check.checked) {
+            window.open(cloudTipsUrl, '_blank');
+            setTimeout(() => {
+                window.location.href = './';
+            }, 400);
+        }
+    });
+</script>
 </body>
 </html>
