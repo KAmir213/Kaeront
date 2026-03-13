@@ -103,11 +103,13 @@
             color: var(--text-dim);
             font-size: 0.7rem;
             cursor: pointer;
+            max-width: 600px;
         }
 
         .checkbox-label input { accent-color: var(--accent); cursor: pointer; }
         .checkbox-label a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed; }
 
+        /* Кнопка с плавной анимацией ширины и текста */
         .btn-pay-action {
             display: inline-block;
             background: #151515;
@@ -117,41 +119,26 @@
             font-size: 0.8rem;
             text-decoration: none;
             text-transform: uppercase;
-            transition: 0.3s;
             border: none;
             opacity: 0.4;
             cursor: not-allowed;
+            white-space: nowrap;
+            overflow: hidden;
+            /* Плавная анимация всех свойств */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn-pay-action.active {
-            display: inline-block;
             background: var(--accent);
             color: #000;
-            padding: 15px 45px;
-            font-family: 'Minecraft';
-            font-size: 0.8rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: 0.3s;
-            border: none;
             opacity: 1;
             cursor: pointer;
         }
 
         .btn-pay-action.active:hover {
-            display: inline-block;
             background: #fff;
             box-shadow: 0 0 20px var(--accent);
             color: var(--accent);
-            padding: 15px 45px;
-            font-family: 'Minecraft';
-            font-size: 0.8rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: 0.3s;
-            border: none;
-            opacity: 1;
-            cursor: pointer;
         }
 
         /* --- FOOTER --- */
@@ -197,7 +184,7 @@
                     <span>Я согласен с <a href="offer" target="_blank">условиями публичной оферты</a> и даю согласие на <a href="privacy" target="_blank">обработку персональных данных</a>. Я подтверждаю, что платеж является добровольным пожертвованием на развитие проекта.</span>
                 </label>
 
-                <button id="pay-button" class="btn-pay-action">Оплатить через CloudTips</button>
+                <button id="pay-button" class="btn-pay-action">Примите условия оферты</button>
             </div>
         </div>
     </div>
@@ -239,21 +226,24 @@
     const btn = document.getElementById('pay-button');
     const cloudTipsUrl = 'https://pay.cloudtips.ru/p/db4c09dc';
 
-    // Тексты для кнопки
     const textDisabled = "Примите условия оферты";
     const textEnabled = "Перейти к оплате";
 
-    // Устанавливаем начальное состояние при загрузке страницы
-    btn.innerText = textDisabled;
-
     check.addEventListener('change', function() {
-        if(this.checked) {
-            btn.classList.add('active');
-            btn.innerText = textEnabled; // Меняем текст на активный
-        } else {
-            btn.classList.remove('active');
-            btn.innerText = textDisabled; // Возвращаем подсказку
-        }
+        // Плавно скрываем текст
+        btn.style.color = 'transparent';
+        
+        setTimeout(() => {
+            if(this.checked) {
+                btn.classList.add('active');
+                btn.innerText = textEnabled;
+            } else {
+                btn.classList.remove('active');
+                btn.innerText = textDisabled;
+            }
+            // Плавно возвращаем цвет текста (черный для активной, белый для неактивной)
+            btn.style.color = this.checked ? '#000' : '#fff';
+        }, 200); // Половина времени транзишна для мягкого переключения
     });
 
     btn.addEventListener('click', function() {
