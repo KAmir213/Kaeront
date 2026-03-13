@@ -122,11 +122,11 @@
             text-decoration: none;
             text-transform: uppercase;
             border: none;
-            opacity: 0.5;
+            opacity: 0.7;
             cursor: not-allowed;
             white-space: nowrap;
             overflow: hidden;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+            transition: width 0.4s ease, 
                         background 0.4s, 
                         color 0.4s, 
                         box-shadow 0.4s, 
@@ -234,7 +234,7 @@
     const textDisabled = "Подтвердите согласие";
     const textEnabled = "Перейти к оплате";
 
-    const widthDisabled = "260px";
+    const widthDisabled = "300px";
     const widthEnabled = "220px";
 
     btn.style.width = widthDisabled;
