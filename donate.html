@@ -55,7 +55,7 @@
         .nav-links a:hover { color: var(--accent); }
 
         /* --- CONTENT --- */
-        .legal-wrapper {
+        .donation-container {
             padding-top: calc(var(--nav-height) + 40px);
             max-width: 900px;
             margin: 0 auto;
@@ -64,7 +64,7 @@
             flex-grow: 1;
         }
 
-        .legal-card {
+        .donation-card {
             background: rgba(0,0,0,0.2);
             border: 1px solid #1a1a1a;
             border-top: 4px solid var(--accent);
@@ -115,8 +115,10 @@
             display: inline-block;
             background: #151515;
             color: #fff;
-            padding: 15px 0;
-            width: 280px;
+            padding: 15px 10px; /* Добавил боковые паддинги для мобилок */
+            width: 300px;
+            max-width: 100%; /* ЗАЩИТА ОТ ВЫЕЗДА ЗА КРАЯ */
+            box-sizing: border-box; /* Чтобы паддинги не увеличивали ширину */
             font-family: 'Minecraft';
             font-size: 0.8rem;
             text-decoration: none;
@@ -126,6 +128,7 @@
             cursor: not-allowed;
             white-space: nowrap;
             overflow: hidden;
+            text-overflow: ellipsis; /* Если текст совсем не влезет, он сократится точками */
             transition: width 0.3s, 
                         background 0.3s, 
                         color 0.3s, 
@@ -158,7 +161,7 @@
         .copyright-bar { border-top: 1px solid #111; padding-top: 30px; margin-top: 40px; text-align: center; font-size: 0.65rem; color: #333; font-family: 'Minecraft'; }
 
         @media (max-width: 600px) {
-            .legal-card { padding: 30px 20px; }
+            .donation-card { padding: 30px 20px; }
             h1 { font-size: 0.9rem; }
         }
     </style>
@@ -175,8 +178,8 @@
         </div>
     </nav>
 
-    <div class="legal-wrapper">
-        <div class="legal-card">
+    <div class="donation-container">
+        <div class="donation-card">
             <a href="./" class="btn-back">< НА ГЛАВНУЮ</a>
             
             <h1>ПОЖЕРТВОВАНИЕ ПРОЕКТУ «KAERONT»</h1>
