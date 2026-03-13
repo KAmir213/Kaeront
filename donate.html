@@ -115,10 +115,10 @@
             display: inline-block;
             background: #151515;
             color: #fff;
-            padding: 15px 10px; /* Добавил боковые паддинги для мобилок */
+            padding: 15px 0;
             width: 300px;
-            max-width: 100%; /* ЗАЩИТА ОТ ВЫЕЗДА ЗА КРАЯ */
-            box-sizing: border-box; /* Чтобы паддинги не увеличивали ширину */
+            max-width: 100%;
+            box-sizing: border-box;
             font-family: 'Minecraft';
             font-size: 0.8rem;
             text-decoration: none;
@@ -128,12 +128,8 @@
             cursor: not-allowed;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis; /* Если текст совсем не влезет, он сократится точками */
-            transition: width 0.3s, 
-                        background 0.3s, 
-                        color 0.3s, 
-                        box-shadow 0.3s, 
-                        opacity 0.3s;
+            /* Ускоряем и синхронизируем всё до 0.3s */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn-pay-action.active {
