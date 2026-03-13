@@ -236,12 +236,18 @@
     const widthDisabled = "300px";
     const widthEnabled = "220px";
 
+    // Изначальный текст
+    btn.innerText = textDisabled;
     btn.style.width = widthDisabled;
 
     check.addEventListener('change', function() {
-        btn.style.color = 'transparent';
+        // 1. Мгновенно делаем текст почти прозрачным, чтобы смена букв была мягкой
+        btn.style.opacity = "0.3";
+        
+        // 2. Запускаем смену ширины и фона
         btn.style.width = this.checked ? widthEnabled : widthDisabled;
 
+        // 3. Через очень короткую паузу (150мс) меняем текст и возвращаем видимость
         setTimeout(() => {
             if(this.checked) {
                 btn.classList.add('active');
@@ -252,7 +258,8 @@
                 btn.innerText = textDisabled;
                 btn.style.color = '#fff';
             }
-        }, 200);
+            btn.style.opacity = this.checked ? "1" : "0.6";
+        }, 150); // Уменьшил задержку в 2 раза для синхронности
     });
 
     btn.addEventListener('click', function() {
