@@ -272,7 +272,7 @@
 }
 
 .why-card { 
-    background: rgba(20, 20, 20, 0.7); 
+    background: rgba(20, 20, 20, 1); 
     border-left: 3px solid var(--accent); 
     padding: 20px;
     width: 260px; 
@@ -707,7 +707,7 @@ function updateOpacity() {
         if (distanceFromCenter < 200) {
             const opacity = 1 - (distanceFromCenter / 300); // Плавное затухание
             card.style.opacity = Math.max(opacity, 1); // Не меньше 0.5
-            card.style.transform = `scale(${Math.max(1, 1.05 - distanceFromCenter/1000)})`; // Легкий зум в центре
+            card.style.transform = `scale(${Math.max(1, 1.1 - distanceFromCenter/1000)})`; // Легкий зум в центре
         } else {
             card.style.opacity = 0.5;
             card.style.transform = `scale(1)`;
