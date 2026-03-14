@@ -244,31 +244,55 @@
         h1 { font-family: 'Minecraft', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--accent); margin: 0; }
         .hero-desc { color: var(--text-main); margin-top: 20px; font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
+
+/* Заголовок секции */
+.section-title { 
+    font-family: 'Minecraft'; 
+    font-size: 1.1rem; 
+    color: var(--text-main); 
+    text-align: center; 
+    margin: 60px 0 20px; /* Отступ сверху, чтобы не прилипало */
+    text-transform: uppercase; 
+}
+
 .why-us-container { 
     width: 100%; 
-    overflow: hidden; /* Скрываем полосу прокрутки совсем */
-    padding: 20px 0; 
+    overflow: hidden; 
+    padding: 10px 0; 
     cursor: grab;
-    user-select: none; /* Чтобы текст не выделялся при перетаскивании */
-    touch-action: pan-y; /* Позволяет листать страницу вертикально на мобиле */
+    user-select: none;
+    touch-action: pan-y;
 }
-.why-us-container:active { cursor: grabbing; }
 
 .why-us-track { 
     display: flex; 
     gap: 20px; 
-    padding: 0 10px; /* Небольшой отступ */
     width: max-content; 
-    will-change: transform; /* Оптимизация для видеокарты */
+    will-change: transform;
 }
 
 .why-card { 
     background: rgba(20, 20, 20, 0.5); 
     border-left: 3px solid var(--accent); 
-    padding: 25px; 
-    width: 280px; 
+    padding: 20px; /* Уменьшил отступы внутри карточки */
+    width: 260px; 
     flex-shrink: 0; 
-    transition: background 0.3s, box-shadow 0.3s, transform 0.3s; 
+    box-sizing: border-box; /* Чтобы padding не раздувал карточку */
+}
+
+.why-card h4 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700; 
+    font-size: 0.95rem; 
+    color: var(--accent); 
+    margin: 0 0 10px; 
+}
+
+.why-card p { 
+    color: var(--text-dim); 
+    font-size: 0.8rem; 
+    line-height: 1.4; 
+    margin: 0; 
 }
 
         /* --- SERVER CARDS --- */
@@ -458,6 +482,7 @@
 </section>
 
 
+
             <div class="servers-header">Наши сервера</div>
     <main class="content-grid" id="servers">
         <div>
@@ -643,94 +668,99 @@
             else nav.classList.remove('scrolled');
         };
 
-const container = document.getElementById('whyUsScroll');
+const scrollContainer = document.getElementById('whyUsScroll');
 const track = document.getElementById('whyUsTrack');
-const cardsOriginal = Array.from(track.children);
+const originalCards = Array.from(track.children);
 
-// Создаем клоны для бесконечного цикла
-cardsOriginal.forEach(card => track.appendChild(card.cloneNode(true)));
-cardsOriginal.forEach(card => track.insertBefore(card.cloneNode(true), track.firstChild));
+// Клонируем карточки для бесконечности
+originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
+originalCards.forEach(card => track.insertBefore(card.cloneNode(true), track.firstChild));
 
 let isDragging = false;
-let startX, scrollLeft;
-let velocity = 0; // Скорость инерции
+let startX, scrollLeftAtStart;
+let velocity = 0;
 let lastX, lastTime;
-let autoSpeed = 0.5; // Базовая скорость дрейфа
+let currentX = originalCards[0].offsetWidth * originalCards.length;
+let targetAutoSpeed = 0.5;
 let currentAutoSpeed = 0.5;
-let currentX = cardsOriginal[0].offsetWidth * cardsOriginal.length;
 
-// Установка начальной позиции
-container.scrollLeft = currentX;
+scrollContainer.scrollLeft = currentX;
 
-function update() {
+function animate() {
     if (!isDragging) {
-        // Применяем инерцию и авто-дрейф
+        // Плавно меняем скорость авто-скролла (для мягкой остановки/запуска)
+        currentAutoSpeed += (targetAutoSpeed - currentAutoSpeed) * 0.05;
+        
+        // Добавляем инерцию и авто-движение
         currentX += velocity + currentAutoSpeed;
         
-        // Постепенно возвращаем авто-скорость, если она была изменена (например, после hover)
-        currentAutoSpeed += (autoSpeed - currentAutoSpeed) * 0.05;
-        
-        // Затухание инерции
+        // Затухание инерции (0.95 - лента катится долго, 0.8 - быстро встает)
         velocity *= 0.95; 
 
-        container.scrollLeft = currentX;
+        scrollContainer.scrollLeft = currentX;
 
-        // Бесшовный переход (зацикливание)
-        const unitWidth = cardsOriginal[0].offsetWidth * cardsOriginal.length;
-        if (container.scrollLeft < unitWidth) {
-            currentX += unitWidth;
-            container.scrollLeft = currentX;
-        } else if (container.scrollLeft > unitWidth * 2) {
-            currentX -= unitWidth;
-            container.scrollLeft = currentX;
+        // Бесшовное зацикливание
+        const trackUnitWidth = originalCards[0].offsetWidth * originalCards.length + 20 * originalCards.length; // ширина карточки + gap
+        if (scrollContainer.scrollLeft <= 0) {
+            currentX += trackUnitWidth;
+            scrollContainer.scrollLeft = currentX;
+        } else if (scrollContainer.scrollLeft >= trackUnitWidth * 2) {
+            currentX -= trackUnitWidth;
+            scrollContainer.scrollLeft = currentX;
         }
     }
-    requestAnimationFrame(update);
+    requestAnimationFrame(animate);
 }
 
-// События мыши и тача
-const onStart = (e) => {
+// Запуск анимации
+requestAnimationFrame(animate);
+
+// Логика перетаскивания
+const startDrag = (e) => {
     isDragging = true;
     startX = (e.pageX || e.touches[0].pageX);
-    scrollLeft = container.scrollLeft;
+    scrollLeftAtStart = scrollContainer.scrollLeft;
     velocity = 0;
     lastX = startX;
     lastTime = performance.now();
 };
 
-const onMove = (e) => {
+const moveDrag = (e) => {
     if (!isDragging) return;
     const x = (e.pageX || e.touches[0].pageX);
-    const walk = x - startX;
-    container.scrollLeft = scrollLeft - walk;
-    currentX = container.scrollLeft;
-
-    // Расчет мгновенной скорости для инерции
     const now = performance.now();
+    
+    // Ручной скролл 1:1
+    const walk = x - startX;
+    scrollContainer.scrollLeft = scrollLeftAtStart - walk;
+    currentX = scrollContainer.scrollLeft;
+
+    // Вычисляем скорость рывка
     const dt = now - lastTime;
     const dx = x - lastX;
-    if (dt > 0) velocity = -dx / (dt / 16); // Нормализация под 60fps
+    if (dt > 0) velocity = -dx / (dt / 16); 
 
     lastX = x;
     lastTime = now;
 };
 
-const onEnd = () => {
+const endDrag = () => {
     isDragging = false;
 };
 
-// Привязка событий
-container.addEventListener('mousedown', onStart);
-window.addEventListener('mousemove', onMove);
-window.addEventListener('mouseup', onEnd);
+// События
+scrollContainer.addEventListener('mousedown', startDrag);
+window.addEventListener('mousemove', moveDrag);
+window.addEventListener('mouseup', endDrag);
 
-container.addEventListener('touchstart', onStart, {passive: true});
-window.addEventListener('touchmove', onMove, {passive: true});
-window.addEventListener('touchend', onEnd);
+scrollContainer.addEventListener('touchstart', startDrag, {passive: true});
+window.addEventListener('touchmove', moveDrag, {passive: true});
+window.addEventListener('touchend', endDrag);
 
-// Плавная остановка при наведении
-container.addEventListener('mouseenter', () => autoSpeed = 0);
-container.addEventListener('mouseleave', () => autoSpeed = 0.5);
+// Плавная пауза при наведении
+scrollContainer.addEventListener('mouseenter', () => targetAutoSpeed = 0);
+scrollContainer.addEventListener('mouseleave', () => targetAutoSpeed = 0.5);
+
 
 // Запуск цикла
 requestAnimationFrame(update);
