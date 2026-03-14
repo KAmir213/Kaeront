@@ -274,11 +274,15 @@
 .why-card { 
     background: rgba(20, 20, 20, 0.5); 
     border-left: 3px solid var(--accent); 
-    padding: 20px; /* Уменьшил отступы внутри карточки */
+    padding: 20px;
     width: 260px; 
     flex-shrink: 0; 
-    box-sizing: border-box; /* Чтобы padding не раздувал карточку */
+    box-sizing: border-box;
+    /* Добавляем это: */
+    transition: background 0.3s, box-shadow 0.3s, opacity 0.3s ease; 
+    opacity: 0.3; /* Базовая прозрачность для боковых карточек */
 }
+
 
 .why-card h4 { 
     font-family: 'Montserrat', sans-serif; 
@@ -290,7 +294,7 @@
 
 .why-card p { 
     color: var(--text-dim); 
-    font-size: 0.8rem; 
+    font-size: 0.7rem; 
     line-height: 1.4; 
     margin: 0; 
 }
@@ -672,7 +676,7 @@ const scrollContainer = document.getElementById('whyUsScroll');
 const track = document.getElementById('whyUsTrack');
 const originalCards = Array.from(track.children);
 
-// Клонируем карточки для бесконечности
+// Клонируем для бесконечности
 originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
 originalCards.forEach(card => track.insertBefore(card.cloneNode(true), track.firstChild));
 
@@ -686,21 +690,40 @@ let currentAutoSpeed = 0.5;
 
 scrollContainer.scrollLeft = currentX;
 
+// Функция для обновления прозрачности
+function updateOpacity() {
+    const containerCenter = scrollContainer.offsetWidth / 2;
+    const cards = track.querySelectorAll('.why-card');
+    
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        
+        // Вычисляем расстояние от центра карточки до центра контейнера
+        const distanceFromCenter = Math.abs(containerCenter - cardCenter);
+        
+        // Если карточка ближе чем на 150px к центру, она становится яркой
+        // Можно поиграть с цифрами: 1.0 — центр, 0.2 — края
+        if (distanceFromCenter < 200) {
+            const opacity = 1 - (distanceFromCenter / 300); // Плавное затухание
+            card.style.opacity = Math.max(opacity, 0.2); // Не меньше 0.2
+            card.style.transform = `scale(${Math.max(1, 1.05 - distanceFromCenter/1000)})`; // Легкий зум в центре
+        } else {
+            card.style.opacity = 0.2;
+            card.style.transform = `scale(1)`;
+        }
+    });
+}
+
 function animate() {
     if (!isDragging) {
-        // Плавно меняем скорость авто-скролла (для мягкой остановки/запуска)
         currentAutoSpeed += (targetAutoSpeed - currentAutoSpeed) * 0.05;
-        
-        // Добавляем инерцию и авто-движение
         currentX += velocity + currentAutoSpeed;
-        
-        // Затухание инерции (0.95 - лента катится долго, 0.8 - быстро встает)
         velocity *= 0.95; 
 
         scrollContainer.scrollLeft = currentX;
 
-        // Бесшовное зацикливание
-        const trackUnitWidth = originalCards[0].offsetWidth * originalCards.length + 20 * originalCards.length; // ширина карточки + gap
+        const trackUnitWidth = originalCards[0].offsetWidth * originalCards.length + 20 * originalCards.length;
         if (scrollContainer.scrollLeft <= 0) {
             currentX += trackUnitWidth;
             scrollContainer.scrollLeft = currentX;
@@ -709,13 +732,18 @@ function animate() {
             scrollContainer.scrollLeft = currentX;
         }
     }
+    
+    // Вызываем обновление прозрачности на каждом кадре
+    updateOpacity();
+    
     requestAnimationFrame(animate);
 }
 
-// Запуск анимации
+// --- Дальше идет твой стандартный блок событий (onStart, moveDrag, endDrag) ---
+// Обязательно оставь их без изменений, чтобы работала прокрутка.
+
 requestAnimationFrame(animate);
 
-// Логика перетаскивания
 const startDrag = (e) => {
     isDragging = true;
     startX = (e.pageX || e.touches[0].pageX);
@@ -729,41 +757,26 @@ const moveDrag = (e) => {
     if (!isDragging) return;
     const x = (e.pageX || e.touches[0].pageX);
     const now = performance.now();
-    
-    // Ручной скролл 1:1
     const walk = x - startX;
     scrollContainer.scrollLeft = scrollLeftAtStart - walk;
     currentX = scrollContainer.scrollLeft;
-
-    // Вычисляем скорость рывка
     const dt = now - lastTime;
     const dx = x - lastX;
     if (dt > 0) velocity = -dx / (dt / 16); 
-
     lastX = x;
     lastTime = now;
 };
 
-const endDrag = () => {
-    isDragging = false;
-};
+const endDrag = () => { isDragging = false; };
 
-// События
 scrollContainer.addEventListener('mousedown', startDrag);
 window.addEventListener('mousemove', moveDrag);
 window.addEventListener('mouseup', endDrag);
-
 scrollContainer.addEventListener('touchstart', startDrag, {passive: true});
 window.addEventListener('touchmove', moveDrag, {passive: true});
 window.addEventListener('touchend', endDrag);
-
-// Плавная пауза при наведении
 scrollContainer.addEventListener('mouseenter', () => targetAutoSpeed = 0);
 scrollContainer.addEventListener('mouseleave', () => targetAutoSpeed = 0.5);
-
-
-// Запуск цикла
-requestAnimationFrame(update);
 
         // Закрытие модалок по клику на затемненный фон (overlay)
         window.onclick = function(e) { 
