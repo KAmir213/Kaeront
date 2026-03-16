@@ -700,7 +700,6 @@ function updateOpacity() {
         // Вычисляем расстояние от центра карточки до центра контейнера
         const distanceFromCenter = Math.abs(containerCenter - cardCenter);
         
-        // Если карточка ближе чем на 150px к центру, она становится яркой
         // Можно поиграть с цифрами: 1.0 — центр, 0.2 — края
         if (distanceFromCenter < 100) {
             const opacity = 1 - (distanceFromCenter / 100); // Плавное затухание
