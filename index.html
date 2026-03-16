@@ -703,9 +703,9 @@ function updateOpacity() {
         // Если карточка ближе чем на 150px к центру, она становится яркой
         // Можно поиграть с цифрами: 1.0 — центр, 0.2 — края
         if (distanceFromCenter < 100) {
-            const opacity = 1 - (distanceFromCenter / 200); // Плавное затухание
+            const opacity = 1 - (distanceFromCenter / 100); // Плавное затухание
             card.style.opacity = Math.max(opacity, 1); // Не меньше 0.5
-            card.style.transform = `scale(${Math.max(1, 1.15 - distanceFromCenter/1000)})`; // Легкий зум в центре
+            card.style.transform = `scale(${Math.max(1, 1.15 - distanceFromCenter/100)})`; // Легкий зум в центре
         } else {
             card.style.opacity = 0.5;
             card.style.transform = `scale(1)`;
