@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <meta property="og:title" content="Kaeront — Список серверов">
-    <meta property="og:description" content="Выберите свой мир в нашей сети серверов. От классического выживания до уникальных режимов.">
-    <meta property="og:image" content="https://kaeront.ru/preview.png">
+    <meta property="og:title" content="Kaeront — Наши сервера">
+    <meta property="og:description" content="Выберите мир по душе: от лампового выживания до творческих площадок.">
+    <meta property="og:image" content="https://kaeront.ru/preview.png"> 
     <meta property="og:url" content="https://kaeront.ru/servers">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#FFAA00">
 
+    <meta name="description" content="Список игровых серверов проекта Kaeront. Узнай статус, версию и особенности наших миров.">
     <link rel="icon" type="image/png" href="favicon.png">
     <title>Kaeront | Сервера</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -23,9 +24,8 @@
             --line-color: rgba(40, 40, 40, 0.4);
             --nav-height: 70px;
             --card-bg: rgba(20, 20, 20, 0.6);
-            --status-online: #55FF55;
-            --status-offline: #FF5555;
-            --status-work: #FFAA00;
+            --online: #55FF55;
+            --offline: #FF5555;
         }
         @font-face {
             font-family: 'Minecraft';
@@ -46,65 +46,54 @@
             align-items: center; padding: 0 5%; box-sizing: border-box; z-index: 2000;
         }
         .nav-logo { font-family: 'Minecraft'; font-size: 0.8rem; color: var(--accent); text-decoration: none; }
-        .nav-links { display: flex; gap: 15px; }
+        .nav-links { display: flex; gap: 10px; }
         .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.65rem; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
         .content-wrapper {
             padding-top: calc(var(--nav-height) + 40px);
-            max-width: 1000px; margin: 0 auto; width: 100%; box-sizing: border-box; flex-grow: 1;
+            max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; flex-grow: 1;
         }
 
         .header-section { margin: 20px; }
         .btn-back { display: inline-block; margin-bottom: 20px; color: var(--text-main); text-decoration: none; font-family: 'Minecraft'; font-size: 0.7rem; transition: 0.3s; }
         .btn-back:hover { color: var(--accent); }
-        h1 { font-family: 'Minecraft'; font-size: 1.5rem; color: var(--accent); margin-bottom: 10px; }
-        .subtitle { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 40px; }
+        h1 { font-family: 'Minecraft'; font-size: 1.5rem; color: var(--accent); margin-bottom: 30px; }
 
-        .server-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px; }
+        .server-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px; }
         
         .server-card {
-            background: var(--card-bg); border: 1px solid #1a1a1a; padding: 25px;
+            background: var(--card-bg); border: 1px solid #1a1a1a; padding: 30px;
             position: relative; transition: 0.3s; display: flex; flex-direction: column;
         }
-        .server-card:hover { border-color: var(--accent); transform: translateY(-5px); background: rgba(30, 30, 30, 0.8); }
+        .server-card:hover { border-color: var(--accent); background: rgba(30, 30, 30, 0.4); }
 
-        .status-badge {
-            display: flex; align-items: center; gap: 8px; font-family: 'Minecraft'; font-size: 0.6rem;
-            text-transform: uppercase; margin-bottom: 15px;
-        }
-        .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .dot.online { background: var(--status-online); box-shadow: 0 0 8px var(--status-online); }
-        .dot.offline { background: var(--status-offline); }
-        .dot.maintenance { background: var(--status-work); animation: pulse 1.5s infinite; }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
-        }
-
-        .server-card h2 { font-family: 'Minecraft'; font-size: 1.2rem; color: var(--accent); margin: 0 0 10px 0; }
-        .server-version { color: var(--text-dim); font-size: 0.75rem; font-family: 'Minecraft'; margin-bottom: 15px; display: block; }
+        .server-card h2 { font-family: 'Minecraft'; font-size: 1.1rem; color: var(--accent); margin: 0 0 10px 0; }
         
-        .server-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-        .tag { font-family: 'Minecraft'; font-size: 0.6rem; padding: 4px 8px; }
+        .server-status { font-family: 'Minecraft'; font-size: 0.6rem; text-transform: uppercase; margin-bottom: 15px; display: flex; align-items: center; gap: 6px; }
+        .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .dot-online { background: var(--online); box-shadow: 0 0 5px var(--online); }
+        .dot-work { background: var(--accent); animation: blink 1s infinite; }
+        .dot-offline { background: var(--offline); }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        .server-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .tag { font-family: 'Minecraft', sans-serif; font-size: 0.6rem; padding: 3px 6px; }
+        .tag-blue { background: #55F; color: #fff; }
+        .tag-gold { background: #FA0; color: #000; }
+        .tag-red { background: #F55; color: #000; }
         .tag-dev { background: #A00; color: #fff; border: 1px solid #F55; }
-        .tag-main { background: #55F; color: #fff; }
-        .tag-new { background: #FA0; color: #000; }
 
-        .server-desc { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+        .server-card p { color: var(--text-dim); font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
 
-        .ip-box {
-            background: #000; border: 1px solid #222; padding: 10px;
-            display: flex; justify-content: space-between; align-items: center;
-            font-family: 'Minecraft'; font-size: 0.75rem; cursor: pointer; transition: 0.3s;
+        .server-ip {
+            background: #000; border: 1px solid #222; padding: 10px; text-align: center;
+            font-family: 'Minecraft'; font-size: 0.7rem; color: var(--accent); cursor: pointer; transition: 0.3s;
         }
-        .ip-box:hover { border-color: var(--accent); }
-        .ip-text { color: var(--accent); }
-        .copy-hint { color: #444; font-size: 0.5rem; }
+        .server-ip:hover { border-color: var(--accent); color: #fff; }
 
-        footer { padding: 60px 20px; background: #050505; border-top: 1px solid #111; margin-top: 60px; }
+        footer { padding: 60px 20px; background: #050505; border-top: 1px solid #111; margin-top: auto; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
         .footer-section h4 { font-family: 'Minecraft'; font-size: 0.7rem; color: var(--accent); margin-bottom: 20px; }
         .footer-links { list-style: none; padding: 0; margin: 0; }
@@ -119,6 +108,7 @@
     <nav>
         <a href="./" class="nav-logo">KAERONT</a>
         <div class="nav-links">
+            <a href="servers">Сервера</a>
             <a href="news">Новости</a>
             <a href="https://t.me/KaerontMC" target="_blank">Поддержка</a>
             <a href="donate" style="color: var(--accent);">Пожертвовать</a>
@@ -128,60 +118,50 @@
     <div class="content-wrapper">
         <div class="header-section">
             <a href="./" class="btn-back">< НА ГЛАВНУЮ</a>
-            <h1>Игровые миры</h1>
-            <p class="subtitle">Выберите режим, который подходит именно вам.</p>
+            <h1>Наши сервера</h1>
         </div>
 
-        <div class="server-grid">
+        <div class="server-list">
             
             <div class="server-card">
-                <div class="status-badge">
-                    <div class="dot online"></div>
-                    <span style="color: var(--status-online)">Онлайн</span>
+                <div class="server-status">
+                    <div class="status-dot dot-online"></div>
+                    <span style="color: var(--online)">Онлайн</span>
                 </div>
                 <h2>Kaeront Hub</h2>
-                <span class="server-version">Версия: 1.20.x — 1.21.x</span>
                 <div class="server-tags">
-                    <span class="tag tag-main">Главный узел</span>
+                    <span class="tag tag-blue">1.20.1 - 1.21.x</span>
+                    <span class="tag tag-gold">Главный узел</span>
                 </div>
-                <p class="server-desc">Ваша точка входа в мир Kaeront. Минималистичный дизайн, отсутствие лишнего шума и быстрый переход между режимами.</p>
-                <div class="ip-box" onclick="copyIp('kaeront.ru')">
-                    <span class="ip-text">kaeront.ru</span>
-                    <span class="copy-hint">НАЖМИ ЧТОБЫ КОПИРОВАТЬ</span>
-                </div>
+                <p>Ваша точка входа. Здесь начинается путь в искусство Minecraft. Минимализм и стабильность.</p>
+                <div class="server-ip" onclick="copyIp('kaeront.ru')">kaeront.ru</div>
             </div>
 
             <div class="server-card">
-                <div class="status-badge">
-                    <div class="dot maintenance"></div>
-                    <span style="color: var(--status-work)">В разработке</span>
+                <div class="server-status">
+                    <div class="status-dot dot-work"></div>
+                    <span style="color: var(--accent)">В разработке</span>
                 </div>
                 <h2>Survival Arts</h2>
-                <span class="server-version">Версия: 1.21.1 (Purpur)</span>
                 <div class="server-tags">
-                    <span class="tag tag-dev">В разработке</span>
-                    <span class="tag tag-new">Cuisine</span>
+                    <span class="tag tag-dev">1.21.1</span>
+                    <span class="tag tag-red">Cuisine</span>
                 </div>
-                <p class="server-desc">Ламповое выживание с уникальными ачивками, системой кулинарии и акцентом на совместное творчество. Без грифа и токсичности.</p>
-                <div class="ip-box" style="opacity: 0.5; cursor: not-allowed;">
-                    <span class="ip-text">СКОРО</span>
-                </div>
+                <p>Уникальное выживание с кастомными ачивками, едой и атмосферой. Место для адекватных игроков.</p>
+                <div class="server-ip" style="opacity: 0.5; cursor: default;">СКОРО</div>
             </div>
 
             <div class="server-card">
-                <div class="status-badge">
-                    <div class="dot offline"></div>
-                    <span style="color: var(--text-dim)">Выключен</span>
+                <div class="server-status">
+                    <div class="status-dot dot-offline"></div>
+                    <span style="color: var(--text-dim)">Оффлайн</span>
                 </div>
                 <h2>Creative Studio</h2>
-                <span class="server-version">Версия: ???</span>
                 <div class="server-tags">
-                    <span class="tag tag-dev" style="background: #333; border: none;">Архив</span>
+                    <span class="tag tag-blue" style="opacity: 0.5;">Идея</span>
                 </div>
-                <p class="server-desc">Площадка для строителей и творцов. В данный момент режим находится в очереди на реализацию.</p>
-                <div class="ip-box" style="opacity: 0.5; cursor: not-allowed;">
-                    <span class="ip-text">OFFLINE</span>
-                </div>
+                <p>Мир для тех, кто хочет строить без границ. В планах на будущее развитие проекта.</p>
+                <div class="server-ip" style="opacity: 0.5; cursor: default;">OFFLINE</div>
             </div>
 
         </div>
@@ -191,7 +171,14 @@
         <div class="footer-grid">
             <div class="footer-section">
                 <h4>KAERONT</h4>
-                <p style="color: var(--text-dim); font-size: 0.8rem;">«Мы создаем качественное игровое пространство для тех, кто ценит Minecraft как искусство»</p>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">«Мы создаем качественное игровое пространство для тех, кто ценит Minecraft как искусство» — KAmir.</p>
+            </div>
+            <div class="footer-section">
+                <h4>ДОКУМЕНТЫ</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy">Политика конфиденциальности</a></li>
+                    <li><a href="offer">Публичная оферта</a></li>
+                </ul>
             </div>
             <div class="footer-section">
                 <h4>ПРОЕКТ</h4>
@@ -212,9 +199,12 @@
     </footer>
 
     <script>
-        function copyIp(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert('IP скопирован: ' + text);
+        function copyIp(ip) {
+            navigator.clipboard.writeText(ip).then(() => {
+                const el = event.target;
+                const originalText = el.innerText;
+                el.innerText = 'СКОПИРОВАНО!';
+                setTimeout(() => { el.innerText = originalText; }, 1500);
             });
         }
     </script>
