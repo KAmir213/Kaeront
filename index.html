@@ -686,8 +686,8 @@ let startX, scrollLeftAtStart;
 let velocity = 0;
 let lastX, lastTime;
 let currentX = originalCards[0].offsetWidth * originalCards.length;
-let targetAutoSpeed = 0.4;
-let currentAutoSpeed = 0.4;
+let targetAutoSpeed = 0.3;
+let currentAutoSpeed = 0.3;
 
 scrollContainer.scrollLeft = currentX;
 
@@ -776,7 +776,7 @@ scrollContainer.addEventListener('touchstart', startDrag, {passive: true});
 window.addEventListener('touchmove', moveDrag, {passive: true});
 window.addEventListener('touchend', endDrag);
 scrollContainer.addEventListener('mouseenter', () => targetAutoSpeed = 0);
-scrollContainer.addEventListener('mouseleave', () => targetAutoSpeed = 0.4);
+scrollContainer.addEventListener('mouseleave', () => targetAutoSpeed = 0.3);
 
         // Закрытие модалок по клику на затемненный фон (overlay)
         window.onclick = function(e) { 
